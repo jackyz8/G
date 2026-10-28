@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: glory-bot-host
+    runtime: docker
+    plan: starter
+    healthCheckPath: /health
+    disk: { name: data, mountPath: /app/data, sizeGB: 1 }
+    envVars:
+      - { key: BOT_TOKEN, sync: false }
+      - { key: ADMIN_IDS, sync: false }
+      - { key: DASHBOARD_PASSWORD, sync: false }
+      - { key: SESSION_SECRET, generateValue: true }
+      - { key: SANDBOX_MODE, value: process }
+      - { key: ALLOW_UNSANDBOXED_USERS, value: "false" }
+      - { key: ALLOW_PUBLIC, value: "false" }
